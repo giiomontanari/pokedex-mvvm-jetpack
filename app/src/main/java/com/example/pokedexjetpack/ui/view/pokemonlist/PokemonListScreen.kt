@@ -9,8 +9,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -61,15 +61,14 @@ fun SearchBar(
     var text by remember {
         mutableStateOf("")
     }
-
     var isHintDisplayed by remember {
         mutableStateOf(hint != "")
     }
 
-    Box(modifier = Modifier) {
+    Box(modifier = modifier) {
         BasicTextField(
             value = text,
-            onValueChange =  {
+            onValueChange = {
                 text = it
                 onSearch(it)
             },
@@ -85,7 +84,7 @@ fun SearchBar(
                     isHintDisplayed = it != null
                 }
         )
-        if (isHintDisplayed) {
+        if(isHintDisplayed) {
             Text(
                 text = hint,
                 color = Color.LightGray,
