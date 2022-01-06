@@ -33,6 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
 import com.example.pokedexjetpack.R
 import com.example.pokedexjetpack.data.models.PokedexListEntry
 import com.example.pokedexjetpack.ui.theme.RobotoCondensed
@@ -205,9 +206,10 @@ fun PokedexEntry(
 //            }
             Image(
                 painter = rememberImagePainter(
-                    request = ImageRequest.Builder(LocalContext.current)
-                        .data(entry.imageUrl)
-                        .build()
+                    data = entry.imageUrl,
+                    builder = {
+                        transformations(CircleCropTransformation())
+                    }
                 ),
                 contentDescription = null,
                 modifier = Modifier
